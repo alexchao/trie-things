@@ -1,4 +1,4 @@
-def normalize_string(s):
+def normalize_key(s):
     if not isinstance(s, str):
         raise TypeError
     if len(s) < 1:
@@ -14,7 +14,7 @@ class Trie(object):
         self.children = dict()
 
     def find(self, s):
-        _, head, tail = normalize_string(s)
+        _, head, tail = normalize_key(s)
         if head not in self.children:
             return None
 
@@ -24,7 +24,7 @@ class Trie(object):
         return node
 
     def insert(self, s):
-        _, head, tail = normalize_string(s)
+        _, head, tail = normalize_key(s)
         node = self.children.setdefault(head, Trie())
         if tail:
             node.insert(tail)
