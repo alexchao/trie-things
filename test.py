@@ -6,9 +6,9 @@ from trie import Trie
 class TrieTest(unittest.TestCase):
 
     def test_empty_trie(self):
-        t = Trie()
+        Trie()
 
-    def test_find(self):
+    def test_find_nothing(self):
         t = Trie().find('foo')
         assert t == None
 
