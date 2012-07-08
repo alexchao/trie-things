@@ -5,6 +5,10 @@ class Trie(object):
 
     @staticmethod
     def parse_key(s):
+        """Break key into its constituent parts.
+
+        Return tuple of <head character>, <tail string>
+        """
         if not isinstance(s, str):
             raise TypeError
         if len(s) < 1:
