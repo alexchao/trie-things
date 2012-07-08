@@ -10,21 +10,22 @@ class Trie(object):
         Return tuple of <head character>, <tail string>
         """
         if not isinstance(s, str):
-            raise TypeError
-        if len(s) < 1:
-            raise ValueError
+            raise TypeError('Key must be a string')
 
         s = s.strip().lower()
+        if s == '':
+            return '', ''
         return s[0], s[1:]
 
     def find(self, s):
+        node = self
         head, tail = self.parse_key(s)
-        if head not in self.children:
-            return None
+        while head != '':
+            if head not in node.children:
+                return None
+            node = node.children[head]
+            head, tail = self.parse_key(tail)
 
-        node = self.children[head]
-        if tail:
-            return node.find(tail)
         return node
 
     def insert(self, s):
