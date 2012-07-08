@@ -1,20 +1,20 @@
-def normalize_key(s):
-    if not isinstance(s, str):
-        raise TypeError
-    if len(s) < 1:
-        raise ValueError
-
-    s = s.strip().lower()
-    return s, s[0], s[1:]
-
-
 class Trie(object):
 
     def __init__(self):
         self.children = dict()
 
+    @staticmethod
+    def parse_key(s):
+        if not isinstance(s, str):
+            raise TypeError
+        if len(s) < 1:
+            raise ValueError
+
+        s = s.strip().lower()
+        return s[0], s[1:]
+
     def find(self, s):
-        _, head, tail = normalize_key(s)
+        head, tail = self.parse_key(s)
         if head not in self.children:
             return None
 
@@ -24,7 +24,7 @@ class Trie(object):
         return node
 
     def insert(self, s):
-        _, head, tail = normalize_key(s)
+        head, tail = self.parse_key(s)
         node = self.children.setdefault(head, Trie())
         if tail:
             node.insert(tail)

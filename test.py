@@ -2,6 +2,7 @@ import unittest
 
 from trie import Trie
 
+
 class TrieTest(unittest.TestCase):
 
     def test_empty_trie(self):
@@ -15,6 +16,7 @@ class TrieTest(unittest.TestCase):
         t = Trie()
         t.insert('foo')
         assert t.find('foo')
+
 
 if __name__ == '__main__':
     unittest.main()
